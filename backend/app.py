@@ -145,5 +145,5 @@ Which one sounds interesting to you? I'd love to share more details about any of
     return "I can tell you about Aseem's projects, skills, education, or interests. What would you like to know more about?"
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port) 
+    port = int(os.environ.get('PORT', 10000))
+    app.run(host='0.0.0.0', port=port, debug=False) 
