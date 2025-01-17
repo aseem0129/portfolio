@@ -8,10 +8,14 @@ type Message = {
   sender: 'user' | 'bot';
 };
 
+// Update the API URL to use environment variable
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+console.log('API_URL:', API_URL);
+
 async function sendMessageToBot(message: string): Promise<string> {
   try {
-    console.log('Sending message:', message);
-    const response = await fetch('http://localhost:5001/api/chat', {
+    console.log('Attempting to connect to:', `${API_URL}/api/chat`);
+    const response = await fetch(`${API_URL}/api/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,6 +26,7 @@ async function sendMessageToBot(message: string): Promise<string> {
       body: JSON.stringify({ message }),
     });
     
+    console.log('Response status:', response.status);
     if (!response.ok) {
       console.error('Server response not ok:', response.status);
       throw new Error(`HTTP error! status: ${response.status}`);
