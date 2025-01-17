@@ -1,15 +1,9 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={
-    r"/*": {
-        "origins": "*",
-        "methods": ["GET", "POST", "OPTIONS"],
-        "allow_headers": ["Content-Type", "Authorization", "Accept"],
-        "max_age": 3600
-    }
-})
+CORS(app)
 
 @app.route('/test', methods=['GET'])
 def test():
@@ -151,4 +145,5 @@ Which one sounds interesting to you? I'd love to share more details about any of
     return "I can tell you about Aseem's projects, skills, education, or interests. What would you like to know more about?"
 
 if __name__ == '__main__':
-    app.run(port=5001, debug=True) 
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port) 
