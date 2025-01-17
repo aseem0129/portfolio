@@ -4,6 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   font-family: 'Poppins', sans-serif;
