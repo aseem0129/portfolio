@@ -1,9 +1,9 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS
-emailjs.init("okI5wvOk4rUFaQG54");
+emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!);
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -26,15 +26,14 @@ export default function ContactSection() {
 
     try {
       await emailjs.send(
-        'service_0kd1dld',
-        'template_qq55aiy',
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_name: 'Aseem Sethi',
-        },
-        'okI5wvOk4rUFaQG54'
+        }
       );
 
       setStatus('success');
